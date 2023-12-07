@@ -1,0 +1,13 @@
+{
+    "name": "nuxt-directus",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "packageManager": "pnpm@8.11.0",
+    "scripts": {
+        "dev": "turbo dev"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC"
+}

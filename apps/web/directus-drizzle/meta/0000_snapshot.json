@@ -1,0 +1,3084 @@
+{
+  "id": "00000000-0000-0000-0000-000000000000",
+  "prevId": "",
+  "version": "5",
+  "dialect": "sqlite",
+  "tables": {
+    "directus_migrations": {
+      "name": "directus_migrations",
+      "columns": {
+        "version": {
+          "autoincrement": false,
+          "name": "version",
+          "type": "numeric",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "name": {
+          "autoincrement": false,
+          "name": "name",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "timestamp": {
+          "default": "(CURRENT_TIMESTAMP)",
+          "autoincrement": false,
+          "name": "timestamp",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "compositePrimaryKeys": {},
+      "indexes": {},
+      "foreignKeys": {},
+      "uniqueConstraints": {}
+    },
+    "directus_folders": {
+      "name": "directus_folders",
+      "columns": {
+        "id": {
+          "autoincrement": false,
+          "name": "id",
+          "type": "numeric",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "name": {
+          "autoincrement": false,
+          "name": "name",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "parent": {
+          "autoincrement": false,
+          "name": "parent",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "compositePrimaryKeys": {},
+      "indexes": {},
+      "foreignKeys": {
+        "directus_folders_parent_directus_folders_id_fk": {
+          "name": "directus_folders_parent_directus_folders_id_fk",
+          "tableFrom": "directus_folders",
+          "tableTo": "directus_folders",
+          "columnsFrom": [
+            "parent"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "uniqueConstraints": {}
+    },
+    "directus_relations": {
+      "name": "directus_relations",
+      "columns": {
+        "id": {
+          "autoincrement": true,
+          "name": "id",
+          "type": "integer",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "many_collection": {
+          "autoincrement": false,
+          "name": "many_collection",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "many_field": {
+          "autoincrement": false,
+          "name": "many_field",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "one_collection": {
+          "autoincrement": false,
+          "name": "one_collection",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "one_field": {
+          "autoincrement": false,
+          "name": "one_field",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "one_collection_field": {
+          "autoincrement": false,
+          "name": "one_collection_field",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "one_allowed_collections": {
+          "autoincrement": false,
+          "name": "one_allowed_collections",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "junction_field": {
+          "autoincrement": false,
+          "name": "junction_field",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "sort_field": {
+          "autoincrement": false,
+          "name": "sort_field",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "one_deselect_action": {
+          "default": "'nullify'",
+          "autoincrement": false,
+          "name": "one_deselect_action",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "compositePrimaryKeys": {},
+      "indexes": {},
+      "foreignKeys": {},
+      "uniqueConstraints": {}
+    },
+    "directus_dashboards": {
+      "name": "directus_dashboards",
+      "columns": {
+        "id": {
+          "autoincrement": false,
+          "name": "id",
+          "type": "numeric",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "name": {
+          "autoincrement": false,
+          "name": "name",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "icon": {
+          "default": "'dashboard'",
+          "autoincrement": false,
+          "name": "icon",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "note": {
+          "autoincrement": false,
+          "name": "note",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "date_created": {
+          "default": "(CURRENT_TIMESTAMP)",
+          "autoincrement": false,
+          "name": "date_created",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "user_created": {
+          "autoincrement": false,
+          "name": "user_created",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "color": {
+          "autoincrement": false,
+          "name": "color",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "compositePrimaryKeys": {},
+      "indexes": {},
+      "foreignKeys": {
+        "directus_dashboards_user_created_directus_users_id_fk": {
+          "name": "directus_dashboards_user_created_directus_users_id_fk",
+          "tableFrom": "directus_dashboards",
+          "tableTo": "directus_users",
+          "columnsFrom": [
+            "user_created"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "set null",
+          "onUpdate": "no action"
+        }
+      },
+      "uniqueConstraints": {}
+    },
+    "directus_files": {
+      "name": "directus_files",
+      "columns": {
+        "id": {
+          "autoincrement": false,
+          "name": "id",
+          "type": "numeric",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "storage": {
+          "autoincrement": false,
+          "name": "storage",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "filename_disk": {
+          "autoincrement": false,
+          "name": "filename_disk",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "filename_download": {
+          "autoincrement": false,
+          "name": "filename_download",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "title": {
+          "autoincrement": false,
+          "name": "title",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "type": {
+          "autoincrement": false,
+          "name": "type",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "folder": {
+          "autoincrement": false,
+          "name": "folder",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "uploaded_by": {
+          "autoincrement": false,
+          "name": "uploaded_by",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "uploaded_on": {
+          "default": "(CURRENT_TIMESTAMP)",
+          "autoincrement": false,
+          "name": "uploaded_on",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "modified_by": {
+          "autoincrement": false,
+          "name": "modified_by",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "modified_on": {
+          "default": "(CURRENT_TIMESTAMP)",
+          "autoincrement": false,
+          "name": "modified_on",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "charset": {
+          "autoincrement": false,
+          "name": "charset",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "filesize": {
+          "default": "(null)",
+          "autoincrement": false,
+          "name": "filesize",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "width": {
+          "autoincrement": false,
+          "name": "width",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "height": {
+          "autoincrement": false,
+          "name": "height",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "duration": {
+          "autoincrement": false,
+          "name": "duration",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "embed": {
+          "autoincrement": false,
+          "name": "embed",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "description": {
+          "autoincrement": false,
+          "name": "description",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "location": {
+          "autoincrement": false,
+          "name": "location",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "tags": {
+          "autoincrement": false,
+          "name": "tags",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "metadata": {
+          "autoincrement": false,
+          "name": "metadata",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "compositePrimaryKeys": {},
+      "indexes": {},
+      "foreignKeys": {
+        "directus_files_folder_directus_folders_id_fk": {
+          "name": "directus_files_folder_directus_folders_id_fk",
+          "tableFrom": "directus_files",
+          "tableTo": "directus_folders",
+          "columnsFrom": [
+            "folder"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "set null",
+          "onUpdate": "no action"
+        },
+        "directus_files_modified_by_directus_users_id_fk": {
+          "name": "directus_files_modified_by_directus_users_id_fk",
+          "tableFrom": "directus_files",
+          "tableTo": "directus_users",
+          "columnsFrom": [
+            "modified_by"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "directus_files_uploaded_by_directus_users_id_fk": {
+          "name": "directus_files_uploaded_by_directus_users_id_fk",
+          "tableFrom": "directus_files",
+          "tableTo": "directus_users",
+          "columnsFrom": [
+            "uploaded_by"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "uniqueConstraints": {}
+    },
+    "directus_permissions": {
+      "name": "directus_permissions",
+      "columns": {
+        "id": {
+          "autoincrement": true,
+          "name": "id",
+          "type": "integer",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "role": {
+          "autoincrement": false,
+          "name": "role",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "collection": {
+          "autoincrement": false,
+          "name": "collection",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "action": {
+          "autoincrement": false,
+          "name": "action",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "permissions": {
+          "autoincrement": false,
+          "name": "permissions",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "validation": {
+          "autoincrement": false,
+          "name": "validation",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "presets": {
+          "autoincrement": false,
+          "name": "presets",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "fields": {
+          "autoincrement": false,
+          "name": "fields",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "compositePrimaryKeys": {},
+      "indexes": {},
+      "foreignKeys": {
+        "directus_permissions_role_directus_roles_id_fk": {
+          "name": "directus_permissions_role_directus_roles_id_fk",
+          "tableFrom": "directus_permissions",
+          "tableTo": "directus_roles",
+          "columnsFrom": [
+            "role"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        }
+      },
+      "uniqueConstraints": {}
+    },
+    "directus_webhooks": {
+      "name": "directus_webhooks",
+      "columns": {
+        "id": {
+          "autoincrement": true,
+          "name": "id",
+          "type": "integer",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "name": {
+          "autoincrement": false,
+          "name": "name",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "method": {
+          "default": "'POST'",
+          "autoincrement": false,
+          "name": "method",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "url": {
+          "autoincrement": false,
+          "name": "url",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "status": {
+          "default": "'active'",
+          "autoincrement": false,
+          "name": "status",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "data": {
+          "default": "'1'",
+          "autoincrement": false,
+          "name": "data",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "actions": {
+          "autoincrement": false,
+          "name": "actions",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "collections": {
+          "autoincrement": false,
+          "name": "collections",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "headers": {
+          "autoincrement": false,
+          "name": "headers",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "compositePrimaryKeys": {},
+      "indexes": {},
+      "foreignKeys": {},
+      "uniqueConstraints": {}
+    },
+    "directus_collections": {
+      "name": "directus_collections",
+      "columns": {
+        "collection": {
+          "autoincrement": false,
+          "name": "collection",
+          "type": "numeric",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "icon": {
+          "autoincrement": false,
+          "name": "icon",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "note": {
+          "autoincrement": false,
+          "name": "note",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "display_template": {
+          "autoincrement": false,
+          "name": "display_template",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "hidden": {
+          "default": "'0'",
+          "autoincrement": false,
+          "name": "hidden",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "singleton": {
+          "default": "'0'",
+          "autoincrement": false,
+          "name": "singleton",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "translations": {
+          "autoincrement": false,
+          "name": "translations",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "archive_field": {
+          "autoincrement": false,
+          "name": "archive_field",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "archive_app_filter": {
+          "default": "'1'",
+          "autoincrement": false,
+          "name": "archive_app_filter",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "archive_value": {
+          "autoincrement": false,
+          "name": "archive_value",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "unarchive_value": {
+          "autoincrement": false,
+          "name": "unarchive_value",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "sort_field": {
+          "autoincrement": false,
+          "name": "sort_field",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "accountability": {
+          "default": "'all'",
+          "autoincrement": false,
+          "name": "accountability",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "color": {
+          "autoincrement": false,
+          "name": "color",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "item_duplication_fields": {
+          "autoincrement": false,
+          "name": "item_duplication_fields",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "sort": {
+          "autoincrement": false,
+          "name": "sort",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "group": {
+          "autoincrement": false,
+          "name": "group",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "collapse": {
+          "default": "'open'",
+          "autoincrement": false,
+          "name": "collapse",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "preview_url": {
+          "autoincrement": false,
+          "name": "preview_url",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "versioning": {
+          "default": "'0'",
+          "autoincrement": false,
+          "name": "versioning",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "compositePrimaryKeys": {},
+      "indexes": {},
+      "foreignKeys": {
+        "directus_collections_group_directus_collections_collection_fk": {
+          "name": "directus_collections_group_directus_collections_collection_fk",
+          "tableFrom": "directus_collections",
+          "tableTo": "directus_collections",
+          "columnsFrom": [
+            "group"
+          ],
+          "columnsTo": [
+            "collection"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "uniqueConstraints": {}
+    },
+    "directus_fields": {
+      "name": "directus_fields",
+      "columns": {
+        "id": {
+          "autoincrement": true,
+          "name": "id",
+          "type": "integer",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "collection": {
+          "autoincrement": false,
+          "name": "collection",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "field": {
+          "autoincrement": false,
+          "name": "field",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "special": {
+          "autoincrement": false,
+          "name": "special",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "interface": {
+          "autoincrement": false,
+          "name": "interface",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "options": {
+          "autoincrement": false,
+          "name": "options",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "display": {
+          "autoincrement": false,
+          "name": "display",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "display_options": {
+          "autoincrement": false,
+          "name": "display_options",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "readonly": {
+          "default": "'0'",
+          "autoincrement": false,
+          "name": "readonly",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "hidden": {
+          "default": "'0'",
+          "autoincrement": false,
+          "name": "hidden",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "sort": {
+          "autoincrement": false,
+          "name": "sort",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "width": {
+          "default": "'full'",
+          "autoincrement": false,
+          "name": "width",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "translations": {
+          "autoincrement": false,
+          "name": "translations",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "note": {
+          "autoincrement": false,
+          "name": "note",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "conditions": {
+          "autoincrement": false,
+          "name": "conditions",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "required": {
+          "default": "'0'",
+          "autoincrement": false,
+          "name": "required",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "group": {
+          "autoincrement": false,
+          "name": "group",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "validation": {
+          "autoincrement": false,
+          "name": "validation",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "validation_message": {
+          "autoincrement": false,
+          "name": "validation_message",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "compositePrimaryKeys": {},
+      "indexes": {},
+      "foreignKeys": {},
+      "uniqueConstraints": {}
+    },
+    "directus_roles": {
+      "name": "directus_roles",
+      "columns": {
+        "id": {
+          "autoincrement": false,
+          "name": "id",
+          "type": "numeric",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "name": {
+          "autoincrement": false,
+          "name": "name",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "icon": {
+          "default": "'supervised_user_circle'",
+          "autoincrement": false,
+          "name": "icon",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "description": {
+          "autoincrement": false,
+          "name": "description",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "ip_access": {
+          "autoincrement": false,
+          "name": "ip_access",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "enforce_tfa": {
+          "default": "'0'",
+          "autoincrement": false,
+          "name": "enforce_tfa",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "admin_access": {
+          "default": "'0'",
+          "autoincrement": false,
+          "name": "admin_access",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "app_access": {
+          "default": "'1'",
+          "autoincrement": false,
+          "name": "app_access",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "compositePrimaryKeys": {},
+      "indexes": {},
+      "foreignKeys": {},
+      "uniqueConstraints": {}
+    },
+    "directus_sessions": {
+      "name": "directus_sessions",
+      "columns": {
+        "token": {
+          "autoincrement": false,
+          "name": "token",
+          "type": "numeric",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "user": {
+          "autoincrement": false,
+          "name": "user",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "expires": {
+          "autoincrement": false,
+          "name": "expires",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "ip": {
+          "autoincrement": false,
+          "name": "ip",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "user_agent": {
+          "autoincrement": false,
+          "name": "user_agent",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "share": {
+          "autoincrement": false,
+          "name": "share",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "origin": {
+          "autoincrement": false,
+          "name": "origin",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "compositePrimaryKeys": {},
+      "indexes": {},
+      "foreignKeys": {
+        "directus_sessions_share_directus_shares_id_fk": {
+          "name": "directus_sessions_share_directus_shares_id_fk",
+          "tableFrom": "directus_sessions",
+          "tableTo": "directus_shares",
+          "columnsFrom": [
+            "share"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        },
+        "directus_sessions_user_directus_users_id_fk": {
+          "name": "directus_sessions_user_directus_users_id_fk",
+          "tableFrom": "directus_sessions",
+          "tableTo": "directus_users",
+          "columnsFrom": [
+            "user"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        }
+      },
+      "uniqueConstraints": {}
+    },
+    "directus_panels": {
+      "name": "directus_panels",
+      "columns": {
+        "id": {
+          "autoincrement": false,
+          "name": "id",
+          "type": "numeric",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "dashboard": {
+          "autoincrement": false,
+          "name": "dashboard",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "name": {
+          "autoincrement": false,
+          "name": "name",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "icon": {
+          "default": "(null)",
+          "autoincrement": false,
+          "name": "icon",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "color": {
+          "autoincrement": false,
+          "name": "color",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "show_header": {
+          "default": "'0'",
+          "autoincrement": false,
+          "name": "show_header",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "note": {
+          "autoincrement": false,
+          "name": "note",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "type": {
+          "autoincrement": false,
+          "name": "type",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "position_x": {
+          "autoincrement": false,
+          "name": "position_x",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "position_y": {
+          "autoincrement": false,
+          "name": "position_y",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "width": {
+          "autoincrement": false,
+          "name": "width",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "height": {
+          "autoincrement": false,
+          "name": "height",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "options": {
+          "autoincrement": false,
+          "name": "options",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "date_created": {
+          "default": "(CURRENT_TIMESTAMP)",
+          "autoincrement": false,
+          "name": "date_created",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "user_created": {
+          "autoincrement": false,
+          "name": "user_created",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "compositePrimaryKeys": {},
+      "indexes": {},
+      "foreignKeys": {
+        "directus_panels_user_created_directus_users_id_fk": {
+          "name": "directus_panels_user_created_directus_users_id_fk",
+          "tableFrom": "directus_panels",
+          "tableTo": "directus_users",
+          "columnsFrom": [
+            "user_created"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "set null",
+          "onUpdate": "no action"
+        },
+        "directus_panels_dashboard_directus_dashboards_id_fk": {
+          "name": "directus_panels_dashboard_directus_dashboards_id_fk",
+          "tableFrom": "directus_panels",
+          "tableTo": "directus_dashboards",
+          "columnsFrom": [
+            "dashboard"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        }
+      },
+      "uniqueConstraints": {}
+    },
+    "directus_flows": {
+      "name": "directus_flows",
+      "columns": {
+        "id": {
+          "autoincrement": false,
+          "name": "id",
+          "type": "numeric",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "name": {
+          "autoincrement": false,
+          "name": "name",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "icon": {
+          "autoincrement": false,
+          "name": "icon",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "color": {
+          "autoincrement": false,
+          "name": "color",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "description": {
+          "autoincrement": false,
+          "name": "description",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "status": {
+          "default": "'active'",
+          "autoincrement": false,
+          "name": "status",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "trigger": {
+          "autoincrement": false,
+          "name": "trigger",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "accountability": {
+          "default": "'all'",
+          "autoincrement": false,
+          "name": "accountability",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "options": {
+          "autoincrement": false,
+          "name": "options",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "operation": {
+          "autoincrement": false,
+          "name": "operation",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "date_created": {
+          "default": "(CURRENT_TIMESTAMP)",
+          "autoincrement": false,
+          "name": "date_created",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "user_created": {
+          "autoincrement": false,
+          "name": "user_created",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "compositePrimaryKeys": {},
+      "indexes": {
+        "directus_flows_operation_unique": {
+          "name": "directus_flows_operation_unique",
+          "columns": [
+            "operation"
+          ],
+          "isUnique": true
+        }
+      },
+      "foreignKeys": {
+        "directus_flows_user_created_directus_users_id_fk": {
+          "name": "directus_flows_user_created_directus_users_id_fk",
+          "tableFrom": "directus_flows",
+          "tableTo": "directus_users",
+          "columnsFrom": [
+            "user_created"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "set null",
+          "onUpdate": "no action"
+        }
+      },
+      "uniqueConstraints": {}
+    },
+    "directus_operations": {
+      "name": "directus_operations",
+      "columns": {
+        "id": {
+          "autoincrement": false,
+          "name": "id",
+          "type": "numeric",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "name": {
+          "autoincrement": false,
+          "name": "name",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "key": {
+          "autoincrement": false,
+          "name": "key",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "type": {
+          "autoincrement": false,
+          "name": "type",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "position_x": {
+          "autoincrement": false,
+          "name": "position_x",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "position_y": {
+          "autoincrement": false,
+          "name": "position_y",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "options": {
+          "autoincrement": false,
+          "name": "options",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "resolve": {
+          "autoincrement": false,
+          "name": "resolve",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "reject": {
+          "autoincrement": false,
+          "name": "reject",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "flow": {
+          "autoincrement": false,
+          "name": "flow",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "date_created": {
+          "default": "(CURRENT_TIMESTAMP)",
+          "autoincrement": false,
+          "name": "date_created",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "user_created": {
+          "autoincrement": false,
+          "name": "user_created",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "compositePrimaryKeys": {},
+      "indexes": {
+        "directus_operations_reject_unique": {
+          "name": "directus_operations_reject_unique",
+          "columns": [
+            "reject"
+          ],
+          "isUnique": true
+        },
+        "directus_operations_resolve_unique": {
+          "name": "directus_operations_resolve_unique",
+          "columns": [
+            "resolve"
+          ],
+          "isUnique": true
+        }
+      },
+      "foreignKeys": {
+        "directus_operations_user_created_directus_users_id_fk": {
+          "name": "directus_operations_user_created_directus_users_id_fk",
+          "tableFrom": "directus_operations",
+          "tableTo": "directus_users",
+          "columnsFrom": [
+            "user_created"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "set null",
+          "onUpdate": "no action"
+        },
+        "directus_operations_flow_directus_flows_id_fk": {
+          "name": "directus_operations_flow_directus_flows_id_fk",
+          "tableFrom": "directus_operations",
+          "tableTo": "directus_flows",
+          "columnsFrom": [
+            "flow"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        },
+        "directus_operations_reject_directus_operations_id_fk": {
+          "name": "directus_operations_reject_directus_operations_id_fk",
+          "tableFrom": "directus_operations",
+          "tableTo": "directus_operations",
+          "columnsFrom": [
+            "reject"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "directus_operations_resolve_directus_operations_id_fk": {
+          "name": "directus_operations_resolve_directus_operations_id_fk",
+          "tableFrom": "directus_operations",
+          "tableTo": "directus_operations",
+          "columnsFrom": [
+            "resolve"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "uniqueConstraints": {}
+    },
+    "directus_activity": {
+      "name": "directus_activity",
+      "columns": {
+        "id": {
+          "autoincrement": true,
+          "name": "id",
+          "type": "integer",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "action": {
+          "autoincrement": false,
+          "name": "action",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "user": {
+          "autoincrement": false,
+          "name": "user",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "timestamp": {
+          "default": "(CURRENT_TIMESTAMP)",
+          "autoincrement": false,
+          "name": "timestamp",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "ip": {
+          "autoincrement": false,
+          "name": "ip",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "user_agent": {
+          "autoincrement": false,
+          "name": "user_agent",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "collection": {
+          "autoincrement": false,
+          "name": "collection",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "item": {
+          "autoincrement": false,
+          "name": "item",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "comment": {
+          "autoincrement": false,
+          "name": "comment",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "origin": {
+          "autoincrement": false,
+          "name": "origin",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "compositePrimaryKeys": {},
+      "indexes": {},
+      "foreignKeys": {},
+      "uniqueConstraints": {}
+    },
+    "directus_notifications": {
+      "name": "directus_notifications",
+      "columns": {
+        "id": {
+          "autoincrement": true,
+          "name": "id",
+          "type": "integer",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "timestamp": {
+          "default": "(CURRENT_TIMESTAMP)",
+          "autoincrement": false,
+          "name": "timestamp",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "status": {
+          "default": "'inbox'",
+          "autoincrement": false,
+          "name": "status",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "recipient": {
+          "autoincrement": false,
+          "name": "recipient",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "sender": {
+          "autoincrement": false,
+          "name": "sender",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "subject": {
+          "autoincrement": false,
+          "name": "subject",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "message": {
+          "autoincrement": false,
+          "name": "message",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "collection": {
+          "autoincrement": false,
+          "name": "collection",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "item": {
+          "autoincrement": false,
+          "name": "item",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "compositePrimaryKeys": {},
+      "indexes": {},
+      "foreignKeys": {
+        "directus_notifications_sender_directus_users_id_fk": {
+          "name": "directus_notifications_sender_directus_users_id_fk",
+          "tableFrom": "directus_notifications",
+          "tableTo": "directus_users",
+          "columnsFrom": [
+            "sender"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "directus_notifications_recipient_directus_users_id_fk": {
+          "name": "directus_notifications_recipient_directus_users_id_fk",
+          "tableFrom": "directus_notifications",
+          "tableTo": "directus_users",
+          "columnsFrom": [
+            "recipient"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        }
+      },
+      "uniqueConstraints": {}
+    },
+    "directus_presets": {
+      "name": "directus_presets",
+      "columns": {
+        "id": {
+          "autoincrement": true,
+          "name": "id",
+          "type": "integer",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "bookmark": {
+          "autoincrement": false,
+          "name": "bookmark",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "user": {
+          "autoincrement": false,
+          "name": "user",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "role": {
+          "autoincrement": false,
+          "name": "role",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "collection": {
+          "autoincrement": false,
+          "name": "collection",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "search": {
+          "autoincrement": false,
+          "name": "search",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "layout": {
+          "default": "'tabular'",
+          "autoincrement": false,
+          "name": "layout",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "layout_query": {
+          "autoincrement": false,
+          "name": "layout_query",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "layout_options": {
+          "autoincrement": false,
+          "name": "layout_options",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "refresh_interval": {
+          "autoincrement": false,
+          "name": "refresh_interval",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "filter": {
+          "autoincrement": false,
+          "name": "filter",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "icon": {
+          "default": "'bookmark'",
+          "autoincrement": false,
+          "name": "icon",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "color": {
+          "autoincrement": false,
+          "name": "color",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "compositePrimaryKeys": {},
+      "indexes": {},
+      "foreignKeys": {
+        "directus_presets_role_directus_roles_id_fk": {
+          "name": "directus_presets_role_directus_roles_id_fk",
+          "tableFrom": "directus_presets",
+          "tableTo": "directus_roles",
+          "columnsFrom": [
+            "role"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        },
+        "directus_presets_user_directus_users_id_fk": {
+          "name": "directus_presets_user_directus_users_id_fk",
+          "tableFrom": "directus_presets",
+          "tableTo": "directus_users",
+          "columnsFrom": [
+            "user"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        }
+      },
+      "uniqueConstraints": {}
+    },
+    "directus_translations": {
+      "name": "directus_translations",
+      "columns": {
+        "id": {
+          "autoincrement": false,
+          "name": "id",
+          "type": "numeric",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "language": {
+          "autoincrement": false,
+          "name": "language",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "key": {
+          "autoincrement": false,
+          "name": "key",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "value": {
+          "autoincrement": false,
+          "name": "value",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "compositePrimaryKeys": {},
+      "indexes": {},
+      "foreignKeys": {},
+      "uniqueConstraints": {}
+    },
+    "directus_shares": {
+      "name": "directus_shares",
+      "columns": {
+        "id": {
+          "autoincrement": false,
+          "name": "id",
+          "type": "numeric",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "name": {
+          "autoincrement": false,
+          "name": "name",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "collection": {
+          "autoincrement": false,
+          "name": "collection",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "item": {
+          "autoincrement": false,
+          "name": "item",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "role": {
+          "autoincrement": false,
+          "name": "role",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "password": {
+          "autoincrement": false,
+          "name": "password",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "user_created": {
+          "autoincrement": false,
+          "name": "user_created",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "date_created": {
+          "default": "(CURRENT_TIMESTAMP)",
+          "autoincrement": false,
+          "name": "date_created",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "date_start": {
+          "default": "(null)",
+          "autoincrement": false,
+          "name": "date_start",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "date_end": {
+          "default": "(null)",
+          "autoincrement": false,
+          "name": "date_end",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "times_used": {
+          "default": "'0'",
+          "autoincrement": false,
+          "name": "times_used",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "max_uses": {
+          "autoincrement": false,
+          "name": "max_uses",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "compositePrimaryKeys": {},
+      "indexes": {},
+      "foreignKeys": {
+        "directus_shares_user_created_directus_users_id_fk": {
+          "name": "directus_shares_user_created_directus_users_id_fk",
+          "tableFrom": "directus_shares",
+          "tableTo": "directus_users",
+          "columnsFrom": [
+            "user_created"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "set null",
+          "onUpdate": "no action"
+        },
+        "directus_shares_role_directus_roles_id_fk": {
+          "name": "directus_shares_role_directus_roles_id_fk",
+          "tableFrom": "directus_shares",
+          "tableTo": "directus_roles",
+          "columnsFrom": [
+            "role"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        },
+        "directus_shares_collection_directus_collections_collection_fk": {
+          "name": "directus_shares_collection_directus_collections_collection_fk",
+          "tableFrom": "directus_shares",
+          "tableTo": "directus_collections",
+          "columnsFrom": [
+            "collection"
+          ],
+          "columnsTo": [
+            "collection"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        }
+      },
+      "uniqueConstraints": {}
+    },
+    "directus_versions": {
+      "name": "directus_versions",
+      "columns": {
+        "id": {
+          "autoincrement": false,
+          "name": "id",
+          "type": "numeric",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "key": {
+          "autoincrement": false,
+          "name": "key",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "name": {
+          "autoincrement": false,
+          "name": "name",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "collection": {
+          "autoincrement": false,
+          "name": "collection",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "item": {
+          "autoincrement": false,
+          "name": "item",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "hash": {
+          "autoincrement": false,
+          "name": "hash",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "date_created": {
+          "default": "(CURRENT_TIMESTAMP)",
+          "autoincrement": false,
+          "name": "date_created",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "date_updated": {
+          "default": "(CURRENT_TIMESTAMP)",
+          "autoincrement": false,
+          "name": "date_updated",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "user_created": {
+          "autoincrement": false,
+          "name": "user_created",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "user_updated": {
+          "autoincrement": false,
+          "name": "user_updated",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "compositePrimaryKeys": {},
+      "indexes": {},
+      "foreignKeys": {
+        "directus_versions_user_updated_directus_users_id_fk": {
+          "name": "directus_versions_user_updated_directus_users_id_fk",
+          "tableFrom": "directus_versions",
+          "tableTo": "directus_users",
+          "columnsFrom": [
+            "user_updated"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "directus_versions_user_created_directus_users_id_fk": {
+          "name": "directus_versions_user_created_directus_users_id_fk",
+          "tableFrom": "directus_versions",
+          "tableTo": "directus_users",
+          "columnsFrom": [
+            "user_created"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "set null",
+          "onUpdate": "no action"
+        },
+        "directus_versions_collection_directus_collections_collection_fk": {
+          "name": "directus_versions_collection_directus_collections_collection_fk",
+          "tableFrom": "directus_versions",
+          "tableTo": "directus_collections",
+          "columnsFrom": [
+            "collection"
+          ],
+          "columnsTo": [
+            "collection"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        }
+      },
+      "uniqueConstraints": {}
+    },
+    "directus_revisions": {
+      "name": "directus_revisions",
+      "columns": {
+        "id": {
+          "autoincrement": true,
+          "name": "id",
+          "type": "integer",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "activity": {
+          "autoincrement": false,
+          "name": "activity",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "collection": {
+          "autoincrement": false,
+          "name": "collection",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "item": {
+          "autoincrement": false,
+          "name": "item",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "data": {
+          "autoincrement": false,
+          "name": "data",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "delta": {
+          "autoincrement": false,
+          "name": "delta",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "parent": {
+          "autoincrement": false,
+          "name": "parent",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "version": {
+          "autoincrement": false,
+          "name": "version",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "compositePrimaryKeys": {},
+      "indexes": {},
+      "foreignKeys": {
+        "directus_revisions_version_directus_versions_id_fk": {
+          "name": "directus_revisions_version_directus_versions_id_fk",
+          "tableFrom": "directus_revisions",
+          "tableTo": "directus_versions",
+          "columnsFrom": [
+            "version"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        },
+        "directus_revisions_activity_directus_activity_id_fk": {
+          "name": "directus_revisions_activity_directus_activity_id_fk",
+          "tableFrom": "directus_revisions",
+          "tableTo": "directus_activity",
+          "columnsFrom": [
+            "activity"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        },
+        "directus_revisions_parent_directus_revisions_id_fk": {
+          "name": "directus_revisions_parent_directus_revisions_id_fk",
+          "tableFrom": "directus_revisions",
+          "tableTo": "directus_revisions",
+          "columnsFrom": [
+            "parent"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "uniqueConstraints": {}
+    },
+    "directus_users": {
+      "name": "directus_users",
+      "columns": {
+        "id": {
+          "autoincrement": false,
+          "name": "id",
+          "type": "numeric",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "first_name": {
+          "autoincrement": false,
+          "name": "first_name",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "last_name": {
+          "autoincrement": false,
+          "name": "last_name",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "email": {
+          "autoincrement": false,
+          "name": "email",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "password": {
+          "autoincrement": false,
+          "name": "password",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "location": {
+          "autoincrement": false,
+          "name": "location",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "title": {
+          "autoincrement": false,
+          "name": "title",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "description": {
+          "autoincrement": false,
+          "name": "description",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "tags": {
+          "autoincrement": false,
+          "name": "tags",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "avatar": {
+          "autoincrement": false,
+          "name": "avatar",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "language": {
+          "default": "(null)",
+          "autoincrement": false,
+          "name": "language",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "tfa_secret": {
+          "autoincrement": false,
+          "name": "tfa_secret",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "status": {
+          "default": "'active'",
+          "autoincrement": false,
+          "name": "status",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "role": {
+          "autoincrement": false,
+          "name": "role",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "token": {
+          "autoincrement": false,
+          "name": "token",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "last_access": {
+          "autoincrement": false,
+          "name": "last_access",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "last_page": {
+          "autoincrement": false,
+          "name": "last_page",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "provider": {
+          "default": "'default'",
+          "autoincrement": false,
+          "name": "provider",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "external_identifier": {
+          "autoincrement": false,
+          "name": "external_identifier",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "auth_data": {
+          "autoincrement": false,
+          "name": "auth_data",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "email_notifications": {
+          "default": "'1'",
+          "autoincrement": false,
+          "name": "email_notifications",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "appearance": {
+          "autoincrement": false,
+          "name": "appearance",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "theme_dark": {
+          "autoincrement": false,
+          "name": "theme_dark",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "theme_light": {
+          "autoincrement": false,
+          "name": "theme_light",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "theme_light_overrides": {
+          "autoincrement": false,
+          "name": "theme_light_overrides",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "theme_dark_overrides": {
+          "autoincrement": false,
+          "name": "theme_dark_overrides",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "compositePrimaryKeys": {},
+      "indexes": {
+        "directus_users_token_unique": {
+          "name": "directus_users_token_unique",
+          "columns": [
+            "token"
+          ],
+          "isUnique": true
+        },
+        "directus_users_email_unique": {
+          "name": "directus_users_email_unique",
+          "columns": [
+            "email"
+          ],
+          "isUnique": true
+        },
+        "directus_users_external_identifier_unique": {
+          "name": "directus_users_external_identifier_unique",
+          "columns": [
+            "external_identifier"
+          ],
+          "isUnique": true
+        }
+      },
+      "foreignKeys": {
+        "directus_users_role_directus_roles_id_fk": {
+          "name": "directus_users_role_directus_roles_id_fk",
+          "tableFrom": "directus_users",
+          "tableTo": "directus_roles",
+          "columnsFrom": [
+            "role"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "set null",
+          "onUpdate": "no action"
+        }
+      },
+      "uniqueConstraints": {}
+    },
+    "directus_settings": {
+      "name": "directus_settings",
+      "columns": {
+        "id": {
+          "autoincrement": true,
+          "name": "id",
+          "type": "integer",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "project_name": {
+          "default": "'Directus'",
+          "autoincrement": false,
+          "name": "project_name",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "project_url": {
+          "autoincrement": false,
+          "name": "project_url",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "project_color": {
+          "default": "'#6644FF'",
+          "autoincrement": false,
+          "name": "project_color",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "project_logo": {
+          "autoincrement": false,
+          "name": "project_logo",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "public_foreground": {
+          "autoincrement": false,
+          "name": "public_foreground",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "public_background": {
+          "autoincrement": false,
+          "name": "public_background",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "public_note": {
+          "autoincrement": false,
+          "name": "public_note",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "auth_login_attempts": {
+          "default": "'25'",
+          "autoincrement": false,
+          "name": "auth_login_attempts",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "auth_password_policy": {
+          "autoincrement": false,
+          "name": "auth_password_policy",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "storage_asset_transform": {
+          "default": "'all'",
+          "autoincrement": false,
+          "name": "storage_asset_transform",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "storage_asset_presets": {
+          "autoincrement": false,
+          "name": "storage_asset_presets",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "custom_css": {
+          "autoincrement": false,
+          "name": "custom_css",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "storage_default_folder": {
+          "autoincrement": false,
+          "name": "storage_default_folder",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "basemaps": {
+          "autoincrement": false,
+          "name": "basemaps",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "mapbox_key": {
+          "autoincrement": false,
+          "name": "mapbox_key",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "module_bar": {
+          "autoincrement": false,
+          "name": "module_bar",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "project_descriptor": {
+          "autoincrement": false,
+          "name": "project_descriptor",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "default_language": {
+          "default": "'en-US'",
+          "autoincrement": false,
+          "name": "default_language",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "custom_aspect_ratios": {
+          "autoincrement": false,
+          "name": "custom_aspect_ratios",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "public_favicon": {
+          "autoincrement": false,
+          "name": "public_favicon",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "default_appearance": {
+          "default": "'auto'",
+          "autoincrement": false,
+          "name": "default_appearance",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "default_theme_light": {
+          "autoincrement": false,
+          "name": "default_theme_light",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "theme_light_overrides": {
+          "autoincrement": false,
+          "name": "theme_light_overrides",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "default_theme_dark": {
+          "autoincrement": false,
+          "name": "default_theme_dark",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "theme_dark_overrides": {
+          "autoincrement": false,
+          "name": "theme_dark_overrides",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "compositePrimaryKeys": {},
+      "indexes": {},
+      "foreignKeys": {
+        "directus_settings_public_favicon_directus_files_id_fk": {
+          "name": "directus_settings_public_favicon_directus_files_id_fk",
+          "tableFrom": "directus_settings",
+          "tableTo": "directus_files",
+          "columnsFrom": [
+            "public_favicon"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "directus_settings_storage_default_folder_directus_folders_id_fk": {
+          "name": "directus_settings_storage_default_folder_directus_folders_id_fk",
+          "tableFrom": "directus_settings",
+          "tableTo": "directus_folders",
+          "columnsFrom": [
+            "storage_default_folder"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "set null",
+          "onUpdate": "no action"
+        },
+        "directus_settings_public_background_directus_files_id_fk": {
+          "name": "directus_settings_public_background_directus_files_id_fk",
+          "tableFrom": "directus_settings",
+          "tableTo": "directus_files",
+          "columnsFrom": [
+            "public_background"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "directus_settings_public_foreground_directus_files_id_fk": {
+          "name": "directus_settings_public_foreground_directus_files_id_fk",
+          "tableFrom": "directus_settings",
+          "tableTo": "directus_files",
+          "columnsFrom": [
+            "public_foreground"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "directus_settings_project_logo_directus_files_id_fk": {
+          "name": "directus_settings_project_logo_directus_files_id_fk",
+          "tableFrom": "directus_settings",
+          "tableTo": "directus_files",
+          "columnsFrom": [
+            "project_logo"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "uniqueConstraints": {}
+    },
+    "directus_extensions": {
+      "name": "directus_extensions",
+      "columns": {
+        "name": {
+          "autoincrement": false,
+          "name": "name",
+          "type": "numeric",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "enabled": {
+          "default": "'1'",
+          "autoincrement": false,
+          "name": "enabled",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "compositePrimaryKeys": {},
+      "indexes": {},
+      "foreignKeys": {},
+      "uniqueConstraints": {}
+    },
+    "languages": {
+      "name": "languages",
+      "columns": {
+        "code": {
+          "autoincrement": false,
+          "name": "code",
+          "type": "numeric",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "name": {
+          "autoincrement": false,
+          "name": "name",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "direction": {
+          "default": "'ltr'",
+          "autoincrement": false,
+          "name": "direction",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "compositePrimaryKeys": {},
+      "indexes": {},
+      "foreignKeys": {},
+      "uniqueConstraints": {}
+    },
+    "blog_category": {
+      "name": "blog_category",
+      "columns": {
+        "id": {
+          "autoincrement": false,
+          "name": "id",
+          "type": "numeric",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "date_created": {
+          "autoincrement": false,
+          "name": "date_created",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "slug": {
+          "autoincrement": false,
+          "name": "slug",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "compositePrimaryKeys": {},
+      "indexes": {},
+      "foreignKeys": {},
+      "uniqueConstraints": {}
+    },
+    "blog_category_translations": {
+      "name": "blog_category_translations",
+      "columns": {
+        "id": {
+          "autoincrement": true,
+          "name": "id",
+          "type": "integer",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "blog_category_id": {
+          "autoincrement": false,
+          "name": "blog_category_id",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "languages_code": {
+          "autoincrement": false,
+          "name": "languages_code",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "name": {
+          "autoincrement": false,
+          "name": "name",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "compositePrimaryKeys": {},
+      "indexes": {},
+      "foreignKeys": {
+        "blog_category_translations_blog_category_id_blog_category_id_fk": {
+          "name": "blog_category_translations_blog_category_id_blog_category_id_fk",
+          "tableFrom": "blog_category_translations",
+          "tableTo": "blog_category",
+          "columnsFrom": [
+            "blog_category_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "set null",
+          "onUpdate": "no action"
+        },
+        "blog_category_translations_languages_code_languages_code_fk": {
+          "name": "blog_category_translations_languages_code_languages_code_fk",
+          "tableFrom": "blog_category_translations",
+          "tableTo": "languages",
+          "columnsFrom": [
+            "languages_code"
+          ],
+          "columnsTo": [
+            "code"
+          ],
+          "onDelete": "set null",
+          "onUpdate": "no action"
+        }
+      },
+      "uniqueConstraints": {}
+    },
+    "blog_translations": {
+      "name": "blog_translations",
+      "columns": {
+        "id": {
+          "autoincrement": true,
+          "name": "id",
+          "type": "integer",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "blog_id": {
+          "autoincrement": false,
+          "name": "blog_id",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "languages_code": {
+          "autoincrement": false,
+          "name": "languages_code",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "title": {
+          "autoincrement": false,
+          "name": "title",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "content": {
+          "autoincrement": false,
+          "name": "content",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "compositePrimaryKeys": {},
+      "indexes": {},
+      "foreignKeys": {
+        "blog_translations_blog_id_blog_id_fk": {
+          "name": "blog_translations_blog_id_blog_id_fk",
+          "tableFrom": "blog_translations",
+          "tableTo": "blog",
+          "columnsFrom": [
+            "blog_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "set null",
+          "onUpdate": "no action"
+        },
+        "blog_translations_languages_code_languages_code_fk": {
+          "name": "blog_translations_languages_code_languages_code_fk",
+          "tableFrom": "blog_translations",
+          "tableTo": "languages",
+          "columnsFrom": [
+            "languages_code"
+          ],
+          "columnsTo": [
+            "code"
+          ],
+          "onDelete": "set null",
+          "onUpdate": "no action"
+        }
+      },
+      "uniqueConstraints": {}
+    },
+    "blog": {
+      "name": "blog",
+      "columns": {
+        "id": {
+          "autoincrement": false,
+          "name": "id",
+          "type": "numeric",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "status": {
+          "default": "'draft'",
+          "autoincrement": false,
+          "name": "status",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "user_created": {
+          "autoincrement": false,
+          "name": "user_created",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "date_created": {
+          "autoincrement": false,
+          "name": "date_created",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "user_updated": {
+          "autoincrement": false,
+          "name": "user_updated",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "date_updated": {
+          "autoincrement": false,
+          "name": "date_updated",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "slug": {
+          "autoincrement": false,
+          "name": "slug",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "cover": {
+          "autoincrement": false,
+          "name": "cover",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "compositePrimaryKeys": {},
+      "indexes": {
+        "blog_slug_unique": {
+          "name": "blog_slug_unique",
+          "columns": [
+            "slug"
+          ],
+          "isUnique": true
+        }
+      },
+      "foreignKeys": {
+        "blog_cover_directus_files_id_fk": {
+          "name": "blog_cover_directus_files_id_fk",
+          "tableFrom": "blog",
+          "tableTo": "directus_files",
+          "columnsFrom": [
+            "cover"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "blog_user_updated_directus_users_id_fk": {
+          "name": "blog_user_updated_directus_users_id_fk",
+          "tableFrom": "blog",
+          "tableTo": "directus_users",
+          "columnsFrom": [
+            "user_updated"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "blog_user_created_directus_users_id_fk": {
+          "name": "blog_user_created_directus_users_id_fk",
+          "tableFrom": "blog",
+          "tableTo": "directus_users",
+          "columnsFrom": [
+            "user_created"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "uniqueConstraints": {}
+    },
+    "blog_blog_category": {
+      "name": "blog_blog_category",
+      "columns": {
+        "id": {
+          "autoincrement": true,
+          "name": "id",
+          "type": "integer",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "blog_id": {
+          "autoincrement": false,
+          "name": "blog_id",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "blog_category_id": {
+          "autoincrement": false,
+          "name": "blog_category_id",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "compositePrimaryKeys": {},
+      "indexes": {},
+      "foreignKeys": {
+        "blog_blog_category_blog_id_blog_id_fk": {
+          "name": "blog_blog_category_blog_id_blog_id_fk",
+          "tableFrom": "blog_blog_category",
+          "tableTo": "blog",
+          "columnsFrom": [
+            "blog_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "set null",
+          "onUpdate": "no action"
+        },
+        "blog_blog_category_blog_category_id_blog_category_id_fk": {
+          "name": "blog_blog_category_blog_category_id_blog_category_id_fk",
+          "tableFrom": "blog_blog_category",
+          "tableTo": "blog_category",
+          "columnsFrom": [
+            "blog_category_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "set null",
+          "onUpdate": "no action"
+        }
+      },
+      "uniqueConstraints": {}
+    }
+  },
+  "enums": {},
+  "_meta": {
+    "schemas": {},
+    "tables": {},
+    "columns": {}
+  }
+}
