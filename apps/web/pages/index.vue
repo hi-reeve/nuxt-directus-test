@@ -11,14 +11,33 @@ const {
         collection: "blog",
     })
 );
+const { data: blogListClient, pending: loadingClient } = await useAsyncData(
+    "bloglist-client",
+    () =>
+        getItems<Blog>({
+            collection: "blog",
+        }),
+    {
+        server: false,
+    }
+);
 </script>
 
 <template>
     <div>
         <div>
-            {{ error }}
+            <p>Server Side</p>
+
+            <div>
+                {{ error }}
+            </div>
+            <p v-if="loading">Loading...</p>
+            <pre v-else>{{ blogList }}</pre>
         </div>
-        <p v-if="loading">Loading...</p>
-        <pre v-else>{{ blogList }}</pre>
+        <div>
+            <p>Client side</p>
+            <p v-if="loadingClient">Loading...</p>
+            <pre v-else>{{ blogListClient }}</pre>
+        </div>
     </div>
 </template>
