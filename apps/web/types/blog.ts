@@ -1,11 +1,20 @@
 type BlogTranslation = {
     title: string;
     content?: string;
+    slug: string;
+    languages_code: string;
 };
 
 export type Blog = {
     id: string;
     translations: BlogTranslation[];
-    slug: string;
+
     cover: string;
+    categories: {
+        blog_category_id: {
+            translations: {
+                name: string;
+            }[];
+        };
+    }[];
 };

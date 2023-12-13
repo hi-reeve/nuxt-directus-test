@@ -16,8 +16,9 @@ export default defineConfig({
         presetIcons(),
         presetTypography(),
         presetWebFonts({
+            provider: "bunny",
             fonts: {
-                // ...
+                sans: "montserrat:100,300,400,500,600,700",
             },
         }),
     ],

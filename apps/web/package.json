@@ -14,6 +14,8 @@
     },
     "devDependencies": {
         "@nuxt/devtools": "latest",
+        "@nuxtjs/i18n": "8.0.0-rc.9",
+        "@unocss/extractor-arbitrary-variants": "^0.58.0",
         "@unocss/nuxt": "^0.58.0",
         "drizzle-kit": "^0.20.6",
         "nuxt": "^3.8.2",
